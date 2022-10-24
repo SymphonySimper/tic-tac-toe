@@ -1,0 +1,35 @@
+:root,body, html {
+	--color-bg: #000;
+	--color-fg: #eee;
+	--color-sec: #222;
+	--color-on-sec: #777;
+	font-family: Poppins, Helvetica, Arial, sans-serif;
+	
+	color: var(--color-fg);
+	background-color: var(--color-bg);
+	
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	background-color: var(--color-bg);
+	color: var(--color-fg);
+	padding: 1rem 4rem;
+	border: 2px solid var(--color-fg);
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: background-color 0.4s, color 0.4s, border-radius 0.4s cubic-bezier(.08,.82,.17,1);
+}
+
+button:hover {
+	background-color:var(--color-fg);
+	color: var(--color-bg);
+	border-radius: 0;
+}
