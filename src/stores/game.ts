@@ -1,11 +1,15 @@
 import { writable } from 'svelte/store';
 
 function createBoxes() {
-	let { subscribe, set, update } = writable([] as string[]);
+	function createArray(): string[] {
+		return Array(9).fill("+");
+	}
+
+	let { subscribe, set, update } = writable(createArray() as string[]);
 
 	return {
 		subscribe,
-		reset: () => set([...Array(9).fill("+")]),
+		reset: () => set(createArray() as string[]),
 		set: (index: number, val: string) => update(arr => {
 			arr[index] = val;
 			return [...arr];

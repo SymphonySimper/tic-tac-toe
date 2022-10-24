@@ -1,13 +1,17 @@
 <script lang="ts">
+	import { createEventDispatcher } from "svelte";
+
 	export let value: string;
 	export let index: number;
 
+	const dispatch = createEventDispatcher();
+
 	function handleClick() {
-		console.log(index + " clicked");
+		dispatch("playerClick", { index });
 	}
 </script>
 
-<button class:filled={value !== "+"} on:click={handleClick}>
+<button disabled={value !== "+"} on:click={handleClick}>
 	{value}
 </button>
 
@@ -22,7 +26,9 @@
 		border: 1px solid var(--color-sec);
 		border-radius: 0.5rem;
 		cursor: pointer;
-		padding: 0rem;
+		padding: 0;
+		width: inherit;
+		height: inherit;
 	}
 
 	button:hover {
@@ -30,7 +36,7 @@
 		border: 2px solid var(--color-sec);
 	}
 
-	.filled {
+	button:disabled {
 		color: var(--color-fg);
 		background-color: var(--color-bg);
 		border: 1px solid #111;
