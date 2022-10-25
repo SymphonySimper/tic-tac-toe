@@ -1,6 +1,6 @@
 [package]
-name = "tauri-try"
-version = "0.0.0"
+name = "tic-tac-toe"
+version = "0.0.1"
 description = "A Tauri App"
 authors = ["you"]
 license = ""
@@ -25,3 +25,9 @@ default = [ "custom-protocol" ]
 # this feature is used used for production builds where `devPath` points to the filesystem
 # DO NOT remove this
 custom-protocol = [ "tauri/custom-protocol" ]
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = 3
+lto = true
+panic = "abort"
