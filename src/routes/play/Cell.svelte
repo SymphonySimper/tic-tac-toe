@@ -38,9 +38,11 @@
 
 <style>
 	.won {
-		border-color: green;
+		border: 2px solid green;
 		color: var(--color-fg);
-		background-color: var(--color-bg);
+		/* background-color: var(--color-bg); */
+		background-color: green;
+		pointer-events: none;
 	}
 
 	button {

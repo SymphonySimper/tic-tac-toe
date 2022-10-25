@@ -1,14 +1,6 @@
 <script lang="ts">
 	import Cell from "./Cell.svelte";
-	import { boxes, player } from "$store/game";
-
-	function handlePlayerClick(e: CustomEvent) {
-		try {
-			boxes.set(e.detail.index, $player);
-		} catch (err) {
-			console.error(err);
-		}
-	}
+	import { boxes } from "$store/game";
 </script>
 
 <div class="table">
@@ -16,7 +8,7 @@
 		<Cell
 			value={box}
 			{index}
-			on:playerClick={(e) => handlePlayerClick(e)}
+			on:playerClick
 		/>
 	{/each}
 </div>
