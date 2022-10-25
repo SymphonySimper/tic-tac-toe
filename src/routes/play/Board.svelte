@@ -5,7 +5,6 @@
 	function handlePlayerClick(e: CustomEvent) {
 		try {
 			boxes.set(e.detail.index, $player);
-			player.change();
 		} catch (err) {
 			console.error(err);
 		}

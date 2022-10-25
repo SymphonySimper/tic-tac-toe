@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 
+	import { isFinished, wonIndex } from "$store/game";
+
 	export let value: string;
 	export let index: number;
 
@@ -9,13 +11,38 @@
 	function handleClick() {
 		dispatch("playerClick", { index });
 	}
+	let won = false;
+
+	function getWon() {
+		won = $wonIndex.includes(index);
+	}
+
+	$: $wonIndex && getWon();
 </script>
 
-<button disabled={value !== "+"} on:click={handleClick}>
-	{value}
+<button
+	on:click={handleClick}
+	disabled={(value !== "+" || $isFinished) && !won}
+	class:won
+>
+	{#if !won && $isFinished}
+		{#if value === "+"}
+			{""}
+		{:else}
+			<span style="color: var(--color-sec)">{value}</span>
+		{/if}
+	{:else}
+		{value}
+	{/if}
 </button>
 
 <style>
+	.won {
+		border-color: green;
+		color: var(--color-fg);
+		background-color: var(--color-bg);
+	}
+
 	button {
 		aspect-ratio: 1;
 		display: grid;

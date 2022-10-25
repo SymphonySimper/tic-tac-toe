@@ -24,11 +24,34 @@ function createPlayer() {
 
 	return {
 		subscribe,
-		change: () => update(player => player === "X" ? "O" : "X"),
+		change: (val: string) => update(() => val),
 		reset: () => set("X")
 	}
 }
 
 const player = createPlayer();
 
-export { boxes, player };
+function createFinished() {
+	let { subscribe, set, update } = writable(false);
+
+	return {
+		subscribe,
+		end: () => update(() => true),
+		reset: () => set(false)
+	}
+
+}
+
+const isFinished = createFinished();
+
+function createWonIndex() {
+	let { subscribe, set, update } = writable([] as number[]);
+	return {
+		subscribe,
+		set: (indexes: number[]) => update(() => [...indexes]),
+		reset: () => set([])
+	}
+}
+const wonIndex = createWonIndex();
+
+export { boxes, player, isFinished, wonIndex };
